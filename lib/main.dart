@@ -3,8 +3,7 @@ import 'package:objectdetector/object_recognition_app.dart';
 import 'package:objectdetector/voice_interaction_screen.dart';
 
 void main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
+  //new
   runApp(MyApp());
 }
 
