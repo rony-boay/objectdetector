@@ -66,6 +66,7 @@ flutter:
   assets:
     - assets/mobilenet_v1_1.0_224.tflite
     - assets/mobilenet_v1_1.0_224.txt
+    - assets/logow.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

@@ -116,7 +116,8 @@ class _ObjectRecognitionAppState extends State<ObjectRecognitionApp> {
         if (confidence >= _speakConfidenceThreshold) {
           await flutterTts.speak(recognizedObject);
 
-          int delayDuration = (recognizedObject.split(' ').length * 400).clamp(800, 3000);
+          int delayDuration =
+              (recognizedObject.split(' ').length * 400).clamp(800, 3000);
           await Future.delayed(Duration(milliseconds: delayDuration));
         }
       }
@@ -125,9 +126,18 @@ class _ObjectRecognitionAppState extends State<ObjectRecognitionApp> {
 
   @override
   void dispose() {
-    _cameraController.stopImageStream();
-    _cameraController.dispose();
-    Tflite.close();
+    if (_cameraController != null) {
+      if (_cameraController.value.isInitialized &&
+          _cameraController.value.isStreamingImages) {
+        _cameraController
+            .stopImageStream()
+            .then((_) => _cameraController.dispose());
+      } else {
+        _cameraController.dispose();
+      }
+    }
+    Tflite.close(); // Close the TFLite model
+    flutterTts.stop(); // Stop any ongoing TTS
     super.dispose();
   }
 
@@ -135,7 +145,8 @@ class _ObjectRecognitionAppState extends State<ObjectRecognitionApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Object Recognition', style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text('Object Recognition',
+            style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white)),
         backgroundColor: Colors.blueAccent,
       ),
       body: Padding(
@@ -164,7 +175,10 @@ class _ObjectRecognitionAppState extends State<ObjectRecognitionApp> {
                 ),
                 child: Text(
                   _error!,
-                  style: TextStyle(color: Colors.red, fontSize: 18.0, fontWeight: FontWeight.w600),
+                  style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w600),
                 ),
               ),
             SizedBox(height: 20),

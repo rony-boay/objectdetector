@@ -323,7 +323,7 @@ class _VoiceInteractionScreenState extends State<VoiceInteractionScreen>
     return Scaffold(
       backgroundColor: Color(0xFF191970),
       appBar: AppBar(
-        title: Text('Voice Interaction Screen'),
+        title: Text('Voice Interaction Screen',style: TextStyle(color: Colors.white),),
         backgroundColor: Color(0xFF191970),
       ),
       body: _isLoading

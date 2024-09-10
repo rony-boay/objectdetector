@@ -3,7 +3,6 @@ import 'package:objectdetector/object_recognition_app.dart';
 import 'package:objectdetector/voice_interaction_screen.dart';
 
 void main() async {
-  //new
   runApp(MyApp());
 }
 
@@ -34,8 +33,19 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Object Recognition App'),
+        title: const Text(
+          'Object Recognition App',
+          style: TextStyle(color: Colors.white),
+        ),
         backgroundColor: Colors.blueAccent,
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.asset(
+            'assets/logow.png', // Add your app icon here
+            fit: BoxFit.contain,
+          ),
+        ),
+        centerTitle: true,
       ),
       body: Column(
         children: [
@@ -45,8 +55,12 @@ class HomeScreen extends StatelessWidget {
                 Navigator.pushNamed(context, '/object_detection');
               },
               child: Container(
-                color: Colors.red,
-                child: Center(
+                decoration: BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+                margin: const EdgeInsets.all(16.0),
+                child: const Center(
                   child: Text(
                     'Object Detection',
                     style: TextStyle(
@@ -66,14 +80,18 @@ class HomeScreen extends StatelessWidget {
                 Navigator.pushNamed(context, '/voice_command');
               },
               child: Container(
-                color: Colors.greenAccent,
-                child: Center(
+                decoration: BoxDecoration(
+                  color: Colors.greenAccent,
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+                margin: const EdgeInsets.all(16.0),
+                child: const Center(
                   child: Text(
                     'Voice Command',
                     style: TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                      color: Colors.white,
                     ),
                     textAlign: TextAlign.center,
                   ),
